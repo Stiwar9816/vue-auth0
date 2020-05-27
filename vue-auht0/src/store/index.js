@@ -24,7 +24,6 @@ export default new Vuex.Store({
   actions: {
     auth0Login(context) {
       console.log("In store action");
-
       context.state.auth0.authorize();
     },
     auth0HandleAuthentication(context) {
@@ -40,7 +39,7 @@ export default new Vuex.Store({
 
           router.replace("/members");
         } else if (err) {
-          alert("login failed. Error #KJN838");
+          alert("login failed.");
           router.replace("/login");
           console.log(err);
         }
