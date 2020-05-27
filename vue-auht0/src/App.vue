@@ -1,60 +1,37 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
+    <v-app-bar app color="primary" dark>
+      <v-toolbar-title>
+        <span>Auth0 With Vue/Vuefity</span>
+      </v-toolbar-title>
 
       <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
+      <v-btn class="mr-2" to="/" text>Home</v-btn>
+      <v-btn class="mr-2" to="/about" text>About</v-btn>
+      <v-btn class="mr-2" to="/contact" text>Contact</v-btn>
+      <v-btn class="mr-2" to="/members" text>Members</v-btn>
+      <v-btn @click="logout" v-if="this.$store.state.userIsAuthorized" text
+        >Logout</v-btn
       >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
     </v-app-bar>
 
     <v-content>
-      <HelloWorld/>
+      <router-view></router-view>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-
 export default {
-  name: 'App',
-
-  components: {
-    HelloWorld,
+  name: "App",
+  data() {
+    return {};
   },
-
-  data: () => ({
-    //
-  }),
+  methods: {
+    logout() {
+      this.$store.dispatch("auth0Logout");
+      console.log("Logging out");
+    },
+  },
 };
 </script>
